@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Back to Friends</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: sans-serif;
+      margin-top: 100px;
+      background-color: #111;
+      color: #fff;
+    }
+    #lyrics {
+      font-size: 50px;
+      padding: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      margin-top: 30px;
+      cursor: pointer;
+      background-color: #fff;
+      color: #111;
+      border: none;
+      border-radius: 8px;
+      opacity: 0;
+    }
+
+  </style>
+</head>
+<body>
+
+<div id="lyrics"> </div>
+<button onclick="startLyrics()">▶ Start Lyrics</button>
+
+<script>
+  const timedLyrics = [
+    { time: 0,  line: "How can we go back to being friends" },
+    { time: 5,  line: "When we just shared a bed?" },
+    { time: 10, line: "How can you look at me and pretend" },
+    { time: 15, line: "I’m someone you’ve never met?" },
+    { time: 22, line: " " }
+  ];
+
+  const lyricsDiv = document.getElementById("lyrics");
+
+  function startLyrics() {
+    timedLyrics.forEach(entry => {
+      setTimeout(() => {
+        lyricsDiv.textContent = entry.line;
+      }, entry.time * 1000);
+    });
+  }
+</script>
+
+</body>
+</html>
