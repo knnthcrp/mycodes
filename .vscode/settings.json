@@ -1,5 +1,12 @@
 {
     "vscode-pets.petSize": "small",
     "vscode-pets.petType": "clippy",
-    "vscode-pets.theme": "winter"
+    "vscode-pets.theme": "winter",
+    "files.associations": {
+        "xstring": "cpp",
+        "iostream": "cpp"
+    },
+    "dataworkspace.excludedProjects": [
+        "database/database.sqlproj"
+    ]
 }

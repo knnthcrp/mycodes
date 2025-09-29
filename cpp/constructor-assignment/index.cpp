@@ -25,7 +25,7 @@ class bankAccount{
     cout << "===============================\n" << endl ;
 }
     void displayBal() {
-    cout << "Hello! " << accountName << " your remaining balance is PHP"<< balance << endl;
+    cout << "\nHello! " << accountName << " your remaining balance is PHP"<< balance << endl;
     }
 };
 
@@ -45,7 +45,7 @@ cout << "1. View account" << endl;
 cout << "2. Check balance" << endl;
 cout << "3. View all accounts" << endl;
 cout << "4. Exit" << endl;
-cout << "Enter your choice: ";
+cout << "Enter your choice: " << endl;
 cin >> choice;
 
 switch (choice) {
@@ -99,6 +99,7 @@ switch (choice) {
         account3.displayAll();
     break;
     case 4: // exit
+        exit(0);
     break;
 
         
