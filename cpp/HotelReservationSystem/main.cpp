@@ -1,11 +1,8 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
-
-void showMenu();
-void displayAllRooms(Room rooms[]);
-
 
 class Guest {
     private:
@@ -14,7 +11,7 @@ class Guest {
         string checkIn;
         string checkOut;
     public:
-        Guest(string name, int roomNum, string checkIn, string checkOut) {
+        Guest(string name = "", int roomNum = 0, string checkIn = " ", string checkOut = " ") {
             this -> name = name;
             this -> roomNum = roomNum;
             this -> checkIn = checkIn;
@@ -25,11 +22,19 @@ class Guest {
         int getRoomNum() { return roomNum; }
         string getCheckIn() { return checkIn; }
         string getCheckOut() { return checkOut; }
+        string getGuest() {
+            string message = name + "\n"; 
+            message += to_string(roomNum) + "\n";
+            message += checkIn + "\n";
+            message += checkOut + "\n";
+            return message;
+        }
 //      SETTERS
         void setName(string aName) { this  -> name = aName;}
         void setRoomNum(int aRoomNum) { this -> roomNum = aRoomNum;}
         void setCheckIn(string aCheckIn) { this -> checkIn = aCheckIn;}
         void setCheckout(string aCheckOut) { this -> checkOut = aCheckOut;}
+
 };
 
 class Room {
@@ -56,17 +61,45 @@ class Room {
         void setIsAvailable(bool aIsAvailable) { this -> isAvailable = aIsAvailable;}
 };
 
+int showMenu();
+void displayAllRooms(vector<Room> firstFloor);
+
 int main() {
 
-Room firstFlr[5] = {
- Room( 101, true),
- Room( 102, true),
- Room( 103, true),
- Room( 104, true),
- Room( 105, false)
-    };
+vector <Room> firstFloor{
+    Room( 101, true),
+    Room( 102, true),
+    Room( 103, true),
+    Room( 104, true),
+    Room( 105, false)
+};
 
-displayAllRooms(firstFlr, 5);
+vector <Guest> reservations  = {
+    Guest("Nabunturan", 101, "2025-10-10", "2025-10-11")
+};
+
+int userChoice = showMenu();
+
+do {
+
+switch (userChoice) {
+    userChoice;
+    case 1:
+        displayAllRooms(firstFloor);
+        break;
+    case 2:
+        break;
+
+int userChoice = showMenu();
+};
+
+
+
+}
+while (userChoice == 6);
+
+
+
 
 
 
@@ -74,7 +107,12 @@ displayAllRooms(firstFlr, 5);
     return 0;
 } 
 
-void showMenu() {
+
+
+
+// FUNCTIONSSSSS
+int showMenu() {
+    int choice;
     cout << "\n===== HOTEL RESERVATION MENU =====" << endl;
     cout << "1. Display all rooms" << endl;
     cout << "2. Make a reservation" << endl;
@@ -83,10 +121,38 @@ void showMenu() {
     cout << "5. Cancel reservation" << endl;
     cout << "6. Exit" << endl;
     cout << "Enter choice: ";
+    cin >> choice;
+    return choice;
+    
 }
 
-void displayAllRooms(Room rooms[], int size) {
-    for (int i = 0; i < size; i++) {
-    cout << rooms[i].getRoom() << endl;
+void displayAllRooms(vector<Room> firstFloor) {
+    for (int i = 0; i < firstFloor.size(); i++) {
+    cout << firstFloor[i].getRoom() << endl;
 }
 }
+
+
+
+
+/* string name, checkIn, checkOut;
+int roomNum;
+
+cout << "Enter guest name: ";
+getline(cin, name);
+
+cout << "Enter room number: ";
+cin >> roomNum;
+cin.ignore();
+
+cout << "Enter check-in date: ";
+getline(cin, checkIn);
+
+cout << "Enter check-out date: ";
+getline(cin, checkOut);
+
+Guest newGuest(name, roomNum, checkIn, checkOut);
+
+reservations.push_back(newGuest);
+
+cout <<reservations.back().getGuest(); */
