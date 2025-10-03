@@ -63,13 +63,12 @@ class Room {
 
 void showMenu();
 void displayAllRooms(vector<Room> firstFloor);
-void makeReservation(string name, string roomNum, string checkIn, string checkOut, vector <Guest> &reservations, vector <Room> firstFloor);
+void makeReservation(string name, string roomNum, string checkIn, string checkOut, vector <Guest>& reservations, vector <Room> &firstFloor);
+void displayAllReservations(vector<Guest> reservations);
 
 int main() {
-
 int choice;
 string name, checkIn, checkOut, roomNum, input;
-
 
 vector <Room> firstFloor{
     Room( "101", true),
@@ -78,17 +77,9 @@ vector <Room> firstFloor{
     Room( "104", true),
     Room( "105", false)
 };
-
 vector <Guest> reservations  = {
-    Guest("Nabunturan", "101", "2025-10-10", "2025-10-11")
+    Guest("Nabunturan", "105", "2025-10-10", "2025-10-11")
 };
-
-
-showMenu();
-    getline(cin, input);
-    choice = stoi(input);
-
-     displayAllRooms(firstFloor);
 
 do {
 showMenu();
@@ -100,9 +91,10 @@ switch (choice) {
         displayAllRooms(firstFloor);
         break;
     case 2:
-        makeReservation(name, roomNum, checkIn, checkOut,reservations, firstFloor);
+        makeReservation(name, roomNum, checkIn, checkOut, reservations, firstFloor);
         break;
     case 3:
+        displayAllReservations(reservations);
         break;
     case 4:
         break;
@@ -116,19 +108,8 @@ switch (choice) {
 };
 }
 while (choice != 6);
-
-
-
-
-
-
-
     return 0;
 } 
-
-
-
-
 // FUNCTIONSSSSS
 void showMenu() {
     cout << "\n===== HOTEL RESERVATION MENU =====" << endl;
@@ -149,35 +130,38 @@ void displayAllRooms(vector<Room> firstFloor) {
 }
 }
 void makeReservation(string name, string roomNum, string checkIn, string checkOut, vector <Guest>& reservations, vector <Room> &firstFloor) {
-    cout << "Enter guest name: ";
-    getline(cin, name);
+cout << "Enter guest name: ";
+getline(cin, name);
 
-    cout << "Enter room number: ";
-    getline(cin, roomNum);
-/*         for (int i = 0; i < size(firstFloor); i++){
-            if (roomNum == firstFloor.getRoomID()) {
+cout << "Enter room number: ";
+getline(cin, roomNum);
+bool found = false;
+    for (int i = 0; i < size(firstFloor); i++){
+        if (roomNum == firstFloor[i].getRoomID()) {
+        found = true;
+        if (firstFloor[i].getIsAvailable()) 
+                cout << "Enter check-in date: ";
+                getline(cin, checkIn);
+                cout << "Enter check-out date: ";
+                getline(cin, checkOut);
+                cout << "\n";
+                Guest newGuest(name, roomNum, checkIn, checkOut );
+                reservations.push_back(newGuest);
+                firstFloor[i].setIsAvailable(false);
+                cout << "Room succesfully reserved";
+        }
+        else {
+            cout << "Sorry, the room is not available. Please choose another room";
+        };
+        break;
+    }
 
-            }
-        } */
-
-    cout << "Enter check-in date: ";
-    getline(cin, checkIn);
-
-    cout << "Enter check-out date: ";
-    getline(cin, checkOut);
-
-    cout << "\n";
-
-    Guest newGuest(name, roomNum, checkIn, checkOut );
-
-    reservations.push_back(newGuest);
-
+}
+void displayAllReservations(vector<Guest> reservations) {
+    cout << "\n===== LIST OF RESERVATIONS =====" << endl;
     for (int i = 0; i < reservations.size(); i++) {
-        cout << reservations[i].getGuest() << endl;
+    cout << reservations[i].getGuest() << endl;
     }
 }
-
-
-
 
 
