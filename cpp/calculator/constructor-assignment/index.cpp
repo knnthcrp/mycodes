@@ -3,53 +3,17 @@
 using namespace std;
 
 class bankAccount{
-    private:
+    public:
         string accountName;
         int accountNumber;
         double balance;
-    public:
         int pin;
+
     bankAccount(string accountName, int accountNumber, double balance, int pin) {
         this -> accountName = accountName;
         this -> accountNumber = accountNumber;
         this -> balance = balance;
         this -> pin = pin;
-    }
-    string getAccountName() {return accountName;}
-    int getAccountNumber() { return accountNumber;}
-    double getBalance() { return balance; }
-    int getPin() { return pin;}
-
-    void setAccountName(string setAccountName) { 
-        this ->  accountName = setAccountName;
-    }
-    void setAccountNumber(int setAccountNumber) { 
-        if (setAccountNumber > 9000) {
-            setAccountNumber = "Invalid account Number";
-        }
-        else { 
-            this -> accountNumber = setAccountNumber;
-            
-        }
-    }
-    void setBalance(double setBalance){ 
-        if (setBalance == 0) {
-            this -> balance = setBalance;
-            
-        }
-        else {
-            cout << "You can't enter this amount";
-        }
-    }
-    void setPin(int setPin){
-        if (setPin == 1234) {
-            pin = "Please use a more secure PIN";
-            
-        }
-        else {
-            this -> pin = setPin;
-            
-        }
     }
 
     void displayAll() {
@@ -57,7 +21,7 @@ class bankAccount{
     cout << "Account name       : " << accountName << endl;
     cout << "Account number     : " << accountNumber << endl;
     cout << "Balance            : " << balance << endl;
-    cout << "PIN                : " << pin << endl; 
+    cout << "PIN                : " << pin << endl;
     cout << "===============================\n" << endl ;
 }
     void displayBal() {
@@ -68,17 +32,12 @@ class bankAccount{
 
 
 int main () {
-bankAccount bankacc1("Kenneth", 9999, 0, 1234);
-cout << bankacc1.getPin();
+bankAccount account1("Maria Santos",    100001, 2500.75, 1234);
+bankAccount account2("Juan Dela Cruz",  100002, 5300.50, 5678);
+bankAccount account3("Andrea Lopez",    100003, 15000.00, 4321);
 
 
-
-
-
-
-
-
-/* int choice; // 1.View account 2. Check balance 3. View All accounts  4. Exit
+int choice; // 1.View account 2. Check balance 3. View All accounts  4. Exit
 char accChoice;
 
 cout << "\n===== MENU =====" << endl;
@@ -86,18 +45,15 @@ cout << "1. View account" << endl;
 cout << "2. Check balance" << endl;
 cout << "3. View all accounts" << endl;
 cout << "4. Exit" << endl;
-cout << "Enter your choice: ";
+cout << "Enter your choice: " << endl;
 cin >> choice;
- */
 
-
-
-/* switch (choice) {
+switch (choice) {
     case 1: // view 1 acc
         cout << "\n***** Choose your Account Name *****\n" << endl;
-        cout << "a. " << account1.getAccountName() << endl;
-        cout << "b. " << account2.getAccountName() << endl;
-        cout << "c. " << account3.getAccountName() << endl;
+        cout << "a. " << account1.accountName << endl;
+        cout << "b. " << account2.accountName << endl;
+        cout << "c. " << account3.accountName << endl;
         cout << "Enter your choice: ";
         cin >> accChoice;
 
@@ -118,9 +74,9 @@ cin >> choice;
     break;
     case 2: // view bal
         cout << "***** Choose your Account Name *****" << endl;
-        cout << "a. " << account1.getAccountName() << endl;
-        cout << "b. " << account2.getAccountName() << endl;
-        cout << "c. " << account3.getAccountName() << endl;
+        cout << "a. " << account1.accountName << endl;
+        cout << "b. " << account2.accountName << endl;
+        cout << "c. " << account3.accountName << endl;
         cout << "Enter your choice: ";
         cin >> accChoice;
 
@@ -138,14 +94,16 @@ cin >> choice;
         }
     break;
     case 3: // view all
-
+        account1.displayAll();
+        account2.displayAll();
+        account3.displayAll();
     break;
     case 4: // exit
         exit(0);
     break;
 
         
-} */
+}
 
 }
 

@@ -121,8 +121,6 @@ void showMenu() {
     cout << "6. Exit" << endl;
     cout << "Enter choice: ";
 }   
-
-
 void displayAllRooms(vector<Room> firstFloor) {
     cout << "\n===== LIST OF ROOMS =====" << endl;
     for (int i = 0; i < firstFloor.size(); i++) {
@@ -163,5 +161,42 @@ void displayAllReservations(vector<Guest> reservations) {
     cout << reservations[i].getGuest() << endl;
     }
 }
+void updateReservation(vector<Guest> reservations) {
+    string input, changed;
+    int choice;
 
+
+    cout << "What do you want to update?\n 1. Name\n 2. Room Number \n 3. Check in date \n 4. Check out date \n";
+    cin >> choice;
+    cout << "Please enter your name: ";
+    cin >> input;
+
+    switch(choice){
+        case 1: // name
+            cout << "Enter your new name: ";
+            cin >> changed;
+            for(int i = 0; i < size(reservations); i++) {
+                if (input == reservations[i].getName()) {
+                    reservations[i] = changed;
+                }
+                else {
+                    cout << "Sorry, we can not find your reservation";
+                }
+        break;
+        case 2:
+            cout << "Please enter your new room number";
+            
+        break;
+        case 3: 
+
+        break;
+        case 4: 
+
+        break;
+    }
+
+    }
+
+
+}
 

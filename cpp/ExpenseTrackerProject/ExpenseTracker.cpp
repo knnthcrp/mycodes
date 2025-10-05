@@ -39,7 +39,8 @@ int main() {
     SQLHENV hEnv;
     SQLHDBC hDbc = initODBCConnection(hEnv); //returns hDbc
 
-cout << testODBCConnection(hDbc);
+cout << showMenu();
+cout << landingPage();
 
 return 0;
 }

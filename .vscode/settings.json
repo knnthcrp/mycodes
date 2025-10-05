@@ -4,7 +4,10 @@
     "vscode-pets.theme": "winter",
     "files.associations": {
         "xstring": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "ios": "cpp",
+        "system_error": "cpp",
+        "string": "cpp"
     },
     "dataworkspace.excludedProjects": [
         "database/database.sqlproj"

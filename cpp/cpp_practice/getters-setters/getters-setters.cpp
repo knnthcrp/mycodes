@@ -5,29 +5,16 @@ using namespace std;
 class Student {
     private:
         int gradeLevel;
-    public: 
         string name;
         float generalAverage;
+    public: 
 
     Student(string name, int gradeLevel,float generalAverage ) {
         this -> name = name;
         this -> gradeLevel = gradeLevel;
         this -> generalAverage = generalAverage;
         
-        cout << "Student Registered." << endl ;
 
-    }
-
-    string getHonors() {
-    if (generalAverage >= 98) return "With Highest Honors.";
-    else if (generalAverage >=95) return "With High Honors";
-    else if (generalAverage >= 90) return "With Honors";
-    else return "No award";
-}
-
-    string introduceUrSelf() {
-        cout << "I am " << name  <<", from Grade 7 and I am "
-        << getHonors() <<  " with the grade of " <<  generalAverage;
     }
 
     int getGradeLevel() {
@@ -36,23 +23,43 @@ class Student {
 
     void setGradeLevel(int agradeLevel) {
         if (agradeLevel > 10) {
-            cout << "Invalid level";
+            cout << "Invalid level" << endl;
         }
         else {
             this -> gradeLevel = agradeLevel;
+            cout << "You entered Grade " << agradeLevel << endl;
+        }
+    }
+    void setName(string setName) {
+        if (setName == "Kenneth") {
+            cout << "You can't enter that." << endl;
+        }
+        else {
+            this -> name = setName;
+            cout << "Hi " << setName << endl;
+        }
+    }
+    void setGenAve(float setGenAve) {
+        if ( setGenAve == 0) {
+            cout << "Your general average can not be 0" << endl;
+        }
+        else {
+            this -> generalAverage = setGenAve;
+            cout << "Your General Average is " << setGenAve << endl;
         }
     }
 };
+
+class LazyStudent : public
 
 
 
 int main (){
     Student student1("Isabelle",7, 98.75);
-    Student student2("Kaiser",7, 95.5);
-    Student student3("Tim",7, 90.75);
-
     student1.setGradeLevel(12);
-    cout << student1.getGradeLevel();
+    student1.setGenAve(0);
+    student1.setName("Kenneth");
+    cout << endl;
 
 }
 

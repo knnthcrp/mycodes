@@ -1,2 +1,1 @@
-    case 4: // exit
-    break;
+getAccountName
