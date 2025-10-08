@@ -35,9 +35,6 @@ class Guest {
         void setCheckIn(string aCheckIn) { this -> checkIn = aCheckIn;}
         void setCheckout(string aCheckOut) { this -> checkOut = aCheckOut;}
 
-        void deleteReservation(string dName = " ",string dRoomnum, string dCheckIn, string dCheckOut ) {
-            this -> name = dName;
-        }
 
 };
 
@@ -75,7 +72,6 @@ void cancelReservation(vector<Guest> &reservations);
 int main() {
 int choice;
 string name, checkIn, checkOut, roomNum, input;
-
 vector <Room> firstFloor{
     Room( "101", true),
     Room( "102", true),
@@ -84,7 +80,7 @@ vector <Room> firstFloor{
     Room( "105", false)
 };
 vector <Guest> reservations  = {
-    Guest("Nabunturan", "105", "2025-10-10", "2025-10-11")
+    Guest("Lebron James", "102", "2025-10-10", "2025-10-11"),
 };
 
 do {
@@ -106,6 +102,7 @@ switch (choice) {
         updateReservation(reservations);
         break;
     case 5:
+        cancelReservation(reservations);
         break;
     case 6:
         cout << "Exiting program...";
@@ -175,109 +172,134 @@ void displayAllReservations(vector<Guest> reservations) {
 void updateReservation(vector<Guest> &reservations) {
     string input, changed;
     int choice;
+    bool found = false;
     
-    cout << "\n1. Name\n2. Room Number \n3. Check in date \n4.Check out date \n";
+    cout << "\n1. Name\n2. Room Number\n3. Check-in date\n4. Check-out date\n";
     cout << "What do you want to update? "; 
     cin >> choice;
+    cin.ignore(); 
 
-    switch(choice){
-        case 1: {// name 
+    switch (choice) {
+        case 1: { // name
             cout << "Please enter your current name: ";
-            cin >> input;
+            getline(cin, input);
+
             cout << "Enter your new name: ";
-                cin >> changed;
-                cin.ignore();
-                for(int i = 0; i < size(reservations); i++) {
-                    if (input == reservations[i].getName()) {
-                        reservations[i].setName(changed);
-                        cout << "\nYou have succesfully updated your name to " << changed << "!" << endl;
-                    }
-                    else {
-                        cout << "Sorry, we can not find your reservation";
-                    }
+            getline(cin, changed);
+
+            for (int i = 0; i < reservations.size(); i++) {
+                if (input == reservations[i].getName()) {
+                    reservations[i].setName(changed);
+                    cout << "\nYou have successfully updated your name to " << changed << "!" << endl;
+                    found = true;
+                    break;
                 }
+            }
+
+            if (!found)
+                cout << "Sorry, we can not find your reservation." << endl;
+            break;
         }
-        break;
-        case 2: { // room number
+
+        case 2: { // room#
             cout << "Please enter your current room number: ";
-            cin >> input;
+            getline(cin, input);
+
             cout << "Please enter your new room number: ";
-            cin >> changed;
-            cin.ignore();
-            for (int i  = 0; i < size(reservations); i++) {
-                if(input == reservations[i].getRoomNum()) {
+            getline(cin, changed);
+
+            for (int i = 0; i < reservations.size(); i++) {
+                if (input == reservations[i].getRoomNum()) {
                     reservations[i].setRoomNum(changed);
-                    cout << "\nYou have successfully changed your room number into " << changed << "!" << endl;
-                }
-                else{
-                    cout << "Sorry, we can not find your reservation";
+                    cout << "\nYou have successfully changed your room number to " << changed << "!" << endl;
+                    found = true;
+                    break;
                 }
             }
+
+            if (!found)
+                cout << "Sorry, we can not find your reservation." << endl;
+            break;
         }
-        break;
-        case 3: { // check in date
-            cout << "Please enter your current check-in date: ";
-            cin >> input;
+
+        case 3: { // checkin
+            cout << "Please enter your name: ";
+            getline(cin, input);
+
             cout << "Please enter your new check-in date: ";
-            cin >> changed;
-            cin.ignore();
-            for (int i  = 0; i < size(reservations); i++) {
-                if(input == reservations[i].getCheckIn()) {
+            getline(cin, changed);
+
+            for (int i = 0; i < reservations.size(); i++) {
+                if (input == reservations[i].getName()) {
                     reservations[i].setCheckIn(changed);
-                    cout << "\nYou have successfully changed your check-in date into " << changed << "!" << endl;
-                }
-                else{
-                    cout << "Sorry, we can not find your reservation";
+                    cout << "\nYou have successfully changed your check-in date to " << changed << "!" << endl;
+                    found = true;
+                    break;
                 }
             }
+
+            if (!found)
+                cout << "Sorry, we can not find your reservation." << endl;
+            break;
         }
-        break;
-        case 4:{
-            cout << "Please enter your current check-out date: ";
-            cin >> input;
+
+        case 4: { // checkout
+            cout << "Please enter your name: ";
+            getline(cin, input);
+
             cout << "Please enter your new check-out date: ";
-            cin >> changed;
-            cin.ignore();
-            for (int i  = 0; i < size(reservations); i++) {
-                if(input == reservations[i].getCheckOut()) {
+            getline(cin, changed);
+
+            for (int i = 0; i < reservations.size(); i++) {
+                if (input == reservations[i].getName()) {
                     reservations[i].setCheckout(changed);
-                    cout << "\nYou have successfully changed your check-out date into " << changed << "!" << endl;
-                }
-                else{
-                    cout << "Sorry, we can not find your reservation";
+                    cout << "\nYou have successfully changed your check-out date to " << changed << "!" << endl;
+                    found = true;
+                    break;
                 }
             }
+
+            if (!found)
+                cout << "Sorry, we can not find your reservation." << endl;
+            break;
         }
-        break;
-        default:{
-            cout << "Please enter a valid choice";
-        }
+
+        default:
+            cout << "Please enter a valid choice." << endl;
     }
-        
 }
 void cancelReservation(vector<Guest> &reservations) {
     string input;
     char sureness;
+    bool found = false;
     cout << "Please enter your name:";
-    cin >> input;
+    getline(cin, input);
     for(int i = 0; i < size(reservations); i++){
         if(input == reservations[i].getName()){
-            cout << "Do you really wish to cancel your reservation? y/n";
+            found = true;
+            cout << "Do you really wish to cancel your reservation? y/n ";
             cin >> sureness;
+            cin.ignore();
             if (sureness == 'y'|| sureness == 'Y') {
-                
-
+                for(int i = 0; i < size(reservations); i++){
+                    if(input == reservations[i].getName()){
+                        reservations.erase(reservations.begin() + i);
+                        cout << "You have successfully canceled your reservation!";
+                        break;
+                    }
+                }
             }else if (sureness == 'n' || sureness == 'N') {
-
+                cout << "Exiting cancelation...";
+                break;
             }else {
-                cout << "Please type 'y' for Yes or 'n' for No.";
+                cout << "Please type 'y' for Yes or 'n' for No. ";
             }
-
-        }else {
-            cout << "Sorry, we can not find your reservation.";
+        break;
         }
     }
-
+    if(!found) {
+        cout << "Sorry, we can not find your reservation. ";
+    }
 }
 
 
